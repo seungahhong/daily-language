@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "Daily Travel Talk",
+    "loading": "Laden...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "complete": "Abgeschlossen",
+    "incomplete": "Unvollständig",
+    "back": "Zurück",
+    "next": "Weiter",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "settings": "Einstellungen"
+  },
+  "landing": {
+    "title": "Tägliche Reisegespräche für bessere Reisen",
+    "subtitle": "KI empfiehlt täglich 3 wichtige Reisephrasen",
+    "cta": "Loslegen",
+    "feature1": "Täglich neue Reisephrasen",
+    "feature2": "Nachsprechen & Quiz",
+    "feature3": "Lernfortschritt verfolgen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "learningLanguages": "Sprachen zum Lernen",
+    "uiLanguage": "App-Sprache",
+    "difficulty": "Schwierigkeitsgrad",
+    "darkMode": "Dunkelmodus",
+    "difficultyLevels": {
+      "lowest": "Anfänger (Klasse 1-3)",
+      "low": "Grundstufe (Klasse 4-6)",
+      "medium": "Mittelstufe (Mittelschule)",
+      "high": "Fortgeschritten (Oberschule)"
+    },
+    "languages": {
+      "en": "Englisch",
+      "ja": "Japanisch",
+      "zh": "Chinesisch (vereinfacht)",
+      "de": "Deutsch"
+    },
+    "selectAtLeastOneLanguage": "Bitte wählen Sie mindestens eine Sprache aus.",
+    "onboarding": {
+      "welcome": "Willkommen!",
+      "setupMessage": "Bitte konfigurieren Sie Ihre Einstellungen vor dem Start.",
+      "startLearning": "Lernen starten"
+    }
+  },
+  "dashboard": {
+    "title": "Heutige empfohlene Phrasen",
+    "noConversations": "Die heutigen Phrasen sind noch nicht bereit.",
+    "situation": "Situation",
+    "original": "Original",
+    "translation": "Übersetzung",
+    "pronunciation": "Aussprache",
+    "keywords": "Schlüsselwörter",
+    "progress": "{current}/{total} abgeschlossen",
+    "allCompleted": "Alles geschafft!",
+    "practicePrompt": "Üben Sie 5 Mal zum Abschließen"
+  },
+  "practice": {
+    "speaking": "Nachsprechen",
+    "quiz": "Lückentext",
+    "speakingCount": "Nachsprechen {count}/3",
+    "quizCount": "Lückentext {count}/2",
+    "listenAndRepeat": "Hören und nachsprechen",
+    "fillInBlank": "Füllen Sie die Lücke mit dem richtigen Wort",
+    "correct": "Richtig!",
+    "incorrect": "Versuchen Sie es erneut",
+    "iReadIt": "Ich habe es laut gelesen",
+    "checkAnswer": "Prüfen",
+    "playAudio": "Abspielen",
+    "recording": "Aufnahme...",
+    "startRecording": "Aufnahme starten",
+    "yourSpeech": "Ihre Sprache",
+    "similarity": "Ähnlichkeit"
+  },
+  "history": {
+    "title": "Frühere Phrasen",
+    "noHistory": "Noch keine Lernhistorie.",
+    "filterByDate": "Nach Datum filtern",
+    "filterByLanguage": "Nach Sprache filtern",
+    "completed": "Abgeschlossen",
+    "notCompleted": "Nicht abgeschlossen",
+    "toggleStatus": "Status wechseln",
+    "loading": "Laden...",
+    "previousPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite",
+    "pageInfo": "Seite {current} von {total}"
+  },
+  "statistics": {
+    "title": "Lernstatistiken",
+    "weeklyProgress": "Wöchentlicher Fortschritt",
+    "monthlyProgress": "Monatlicher Fortschritt",
+    "byLanguage": "Nach Sprache",
+    "streak": "Serie",
+    "totalDays": "Gesamttage",
+    "completionRate": "Abschlussrate",
+    "days": "Tage",
+    "summary": "Zusammenfassung",
+    "noData": "Noch keine Statistikdaten.",
+    "loading": "Laden..."
+  },
+  "nav": {
+    "today": "Heute",
+    "history": "Verlauf",
+    "statistics": "Statistik",
+    "settings": "Einstellungen"
+  }
+}

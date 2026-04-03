@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "Daily Travel Talk",
+    "loading": "로딩 중...",
+    "save": "저장",
+    "cancel": "취소",
+    "complete": "완료",
+    "incomplete": "미완료",
+    "back": "뒤로",
+    "next": "다음",
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "settings": "설정"
+  },
+  "landing": {
+    "title": "여행이 더 즐거워지는 매일 회화",
+    "subtitle": "매일 3개의 여행 필수 회화를 AI가 추천합니다",
+    "cta": "시작하기",
+    "feature1": "매일 새로운 여행 회화",
+    "feature2": "따라 말하기 & 퀴즈",
+    "feature3": "학습 통계 추적"
+  },
+  "settings": {
+    "title": "설정",
+    "learningLanguages": "배우고 싶은 언어",
+    "uiLanguage": "앱 언어",
+    "difficulty": "난이도",
+    "darkMode": "다크 모드",
+    "difficultyLevels": {
+      "lowest": "최하 (초1-3)",
+      "low": "하 (초4-6)",
+      "medium": "중 (중학교)",
+      "high": "상 (고등학교)"
+    },
+    "languages": {
+      "en": "영어",
+      "ja": "일본어",
+      "zh": "중국어 (간체)",
+      "de": "독일어"
+    },
+    "selectAtLeastOneLanguage": "최소 하나의 언어를 선택해주세요.",
+    "onboarding": {
+      "welcome": "환영합니다!",
+      "setupMessage": "학습을 시작하기 전에 기본 설정을 해주세요.",
+      "startLearning": "학습 시작"
+    }
+  },
+  "dashboard": {
+    "title": "오늘의 추천 회화",
+    "noConversations": "오늘의 회화가 아직 준비되지 않았습니다.",
+    "situation": "상황",
+    "original": "원문",
+    "translation": "번역",
+    "pronunciation": "발음",
+    "keywords": "핵심 단어",
+    "progress": "{current}/{total} 완료",
+    "allCompleted": "모두 완료했습니다!",
+    "practicePrompt": "5번 반복 연습을 해보세요"
+  },
+  "practice": {
+    "speaking": "따라 말하기",
+    "quiz": "빈칸 채우기",
+    "speakingCount": "따라 말하기 {count}/3",
+    "quizCount": "빈칸 채우기 {count}/2",
+    "listenAndRepeat": "듣고 따라 말해보세요",
+    "fillInBlank": "빈칸에 알맞은 단어를 입력하세요",
+    "correct": "정답입니다!",
+    "incorrect": "다시 시도해보세요",
+    "iReadIt": "따라 읽었습니다",
+    "checkAnswer": "확인",
+    "playAudio": "재생",
+    "recording": "녹음 중...",
+    "startRecording": "녹음 시작",
+    "yourSpeech": "당신의 발화",
+    "similarity": "유사도"
+  },
+  "history": {
+    "title": "이전 회화",
+    "noHistory": "아직 학습 기록이 없습니다.",
+    "filterByDate": "날짜 필터",
+    "filterByLanguage": "언어 필터",
+    "completed": "완료",
+    "notCompleted": "미완료",
+    "toggleStatus": "상태 변경",
+    "loading": "로딩 중...",
+    "previousPage": "이전 페이지",
+    "nextPage": "다음 페이지",
+    "pageInfo": "{current} / {total} 페이지"
+  },
+  "statistics": {
+    "title": "학습 통계",
+    "weeklyProgress": "주간 진행률",
+    "monthlyProgress": "월간 진행률",
+    "byLanguage": "언어별 현황",
+    "streak": "연속 학습일",
+    "totalDays": "총 학습일",
+    "completionRate": "완료율",
+    "days": "일",
+    "summary": "학습 요약",
+    "noData": "아직 통계 데이터가 없습니다.",
+    "loading": "로딩 중..."
+  },
+  "nav": {
+    "today": "오늘 회화",
+    "history": "이전 회화",
+    "statistics": "통계",
+    "settings": "설정"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "Daily Travel Talk",
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "complete": "完了",
+    "incomplete": "未完了",
+    "back": "戻る",
+    "next": "次へ",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "settings": "設定"
+  },
+  "landing": {
+    "title": "旅行がもっと楽しくなる毎日の会話",
+    "subtitle": "毎日3つの旅行必須フレーズをAIがおすすめします",
+    "cta": "始める",
+    "feature1": "毎日新しい旅行フレーズ",
+    "feature2": "リピート＆クイズ練習",
+    "feature3": "学習統計の追跡"
+  },
+  "settings": {
+    "title": "設定",
+    "learningLanguages": "学びたい言語",
+    "uiLanguage": "アプリの言語",
+    "difficulty": "難易度",
+    "darkMode": "ダークモード",
+    "difficultyLevels": {
+      "lowest": "最低（小1-3）",
+      "low": "低（小4-6）",
+      "medium": "中（中学校）",
+      "high": "高（高校）"
+    },
+    "languages": {
+      "en": "英語",
+      "ja": "日本語",
+      "zh": "中国語（簡体字）",
+      "de": "ドイツ語"
+    },
+    "selectAtLeastOneLanguage": "少なくとも1つの言語を選択してください。",
+    "onboarding": {
+      "welcome": "ようこそ！",
+      "setupMessage": "学習を始める前に基本設定をしてください。",
+      "startLearning": "学習開始"
+    }
+  },
+  "dashboard": {
+    "title": "今日のおすすめフレーズ",
+    "noConversations": "今日のフレーズはまだ準備中です。",
+    "situation": "シチュエーション",
+    "original": "原文",
+    "translation": "翻訳",
+    "pronunciation": "発音",
+    "keywords": "キーワード",
+    "progress": "{current}/{total} 完了",
+    "allCompleted": "すべて完了しました！",
+    "practicePrompt": "5回繰り返して練習しましょう"
+  },
+  "practice": {
+    "speaking": "リピート",
+    "quiz": "穴埋め",
+    "speakingCount": "リピート {count}/3",
+    "quizCount": "穴埋め {count}/2",
+    "listenAndRepeat": "聞いて繰り返してください",
+    "fillInBlank": "空欄に正しい単語を入力してください",
+    "correct": "正解です！",
+    "incorrect": "もう一度やってみましょう",
+    "iReadIt": "声に出して読みました",
+    "checkAnswer": "確認",
+    "playAudio": "再生",
+    "recording": "録音中...",
+    "startRecording": "録音開始",
+    "yourSpeech": "あなたの発話",
+    "similarity": "類似度"
+  },
+  "history": {
+    "title": "過去のフレーズ",
+    "noHistory": "まだ学習記録がありません。",
+    "filterByDate": "日付フィルター",
+    "filterByLanguage": "言語フィルター",
+    "completed": "完了",
+    "notCompleted": "未完了",
+    "toggleStatus": "状態変更",
+    "loading": "読み込み中...",
+    "previousPage": "前のページ",
+    "nextPage": "次のページ",
+    "pageInfo": "{current} / {total} ページ"
+  },
+  "statistics": {
+    "title": "学習統計",
+    "weeklyProgress": "週間進捗",
+    "monthlyProgress": "月間進捗",
+    "byLanguage": "言語別",
+    "streak": "連続学習日数",
+    "totalDays": "総学習日数",
+    "completionRate": "完了率",
+    "days": "日",
+    "summary": "学習要約",
+    "noData": "まだ統計データがありません。",
+    "loading": "読み込み中..."
+  },
+  "nav": {
+    "today": "今日",
+    "history": "履歴",
+    "statistics": "統計",
+    "settings": "設定"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "Daily Travel Talk",
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "complete": "完成",
+    "incomplete": "未完成",
+    "back": "返回",
+    "next": "下一步",
+    "signIn": "登录",
+    "signOut": "退出",
+    "settings": "设置"
+  },
+  "landing": {
+    "title": "让旅行更有趣的每日会话",
+    "subtitle": "AI每天推荐3个旅行必备短语",
+    "cta": "开始",
+    "feature1": "每天更新旅行短语",
+    "feature2": "跟读和测验练习",
+    "feature3": "追踪学习进度"
+  },
+  "settings": {
+    "title": "设置",
+    "learningLanguages": "想学习的语言",
+    "uiLanguage": "应用语言",
+    "difficulty": "难度",
+    "darkMode": "深色模式",
+    "difficultyLevels": {
+      "lowest": "最低（小1-3年级）",
+      "low": "低（小4-6年级）",
+      "medium": "中（初中）",
+      "high": "高（高中）"
+    },
+    "languages": {
+      "en": "英语",
+      "ja": "日语",
+      "zh": "中文（简体）",
+      "de": "德语"
+    },
+    "selectAtLeastOneLanguage": "请至少选择一种语言。",
+    "onboarding": {
+      "welcome": "欢迎！",
+      "setupMessage": "开始学习之前请先进行基本设置。",
+      "startLearning": "开始学习"
+    }
+  },
+  "dashboard": {
+    "title": "今日推荐短语",
+    "noConversations": "今天的短语还在准备中。",
+    "situation": "场景",
+    "original": "原文",
+    "translation": "翻译",
+    "pronunciation": "发音",
+    "keywords": "关键词",
+    "progress": "{current}/{total} 已完成",
+    "allCompleted": "全部完成！",
+    "practicePrompt": "请重复练习5次"
+  },
+  "practice": {
+    "speaking": "跟读",
+    "quiz": "填空",
+    "speakingCount": "跟读 {count}/3",
+    "quizCount": "填空 {count}/2",
+    "listenAndRepeat": "听后跟读",
+    "fillInBlank": "在空白处填入正确的单词",
+    "correct": "正确！",
+    "incorrect": "请再试一次",
+    "iReadIt": "我已跟读",
+    "checkAnswer": "确认",
+    "playAudio": "播放",
+    "recording": "录音中...",
+    "startRecording": "开始录音",
+    "yourSpeech": "你的发言",
+    "similarity": "相似度"
+  },
+  "history": {
+    "title": "以往短语",
+    "noHistory": "还没有学习记录。",
+    "filterByDate": "日期筛选",
+    "filterByLanguage": "语言筛选",
+    "completed": "已完成",
+    "notCompleted": "未完成",
+    "toggleStatus": "切换状态",
+    "loading": "加载中...",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "pageInfo": "第 {current} / {total} 页"
+  },
+  "statistics": {
+    "title": "学习统计",
+    "weeklyProgress": "每周进度",
+    "monthlyProgress": "每月进度",
+    "byLanguage": "按语言",
+    "streak": "连续学习天数",
+    "totalDays": "总学习天数",
+    "completionRate": "完成率",
+    "days": "天",
+    "summary": "学习概要",
+    "noData": "还没有统计数据。",
+    "loading": "加载中..."
+  },
+  "nav": {
+    "today": "今天",
+    "history": "历史",
+    "statistics": "统计",
+    "settings": "设置"
+  }
+}

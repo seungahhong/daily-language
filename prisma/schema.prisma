@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  settings      UserSettings?
+  practices     Practice[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model UserSettings {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  learningLanguages   String[]
+  uiLanguage          String   @default("ko")
+  difficulty          String   @default("low")
+  darkMode            Boolean  @default(false)
+  timezone            String   @default("Asia/Seoul")
+  onboardingCompleted Boolean  @default(false)
+}
+
+model Conversation {
+  id            String     @id @default(cuid())
+  date          DateTime   @db.Date
+  language      String
+  difficulty    String
+  situation     String
+  original      String
+  translation   Json
+  pronunciation String?
+  keywords      String[]
+  practices     Practice[]
+  createdAt     DateTime   @default(now())
+
+  @@index([date, language, difficulty])
+  @@index([language, date])
+}
+
+model Practice {
+  id             String        @id @default(cuid())
+  userId         String
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversationId String
+  conversation   Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  speakingCount  Int           @default(0)
+  quizCount      Int           @default(0)
+  isCompleted    Boolean       @default(false)
+  completedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@unique([userId, conversationId])
+  @@index([userId, isCompleted])
+}

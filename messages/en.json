@@ -1,0 +1,109 @@
+{
+  "common": {
+    "appName": "Daily Travel Talk",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "complete": "Complete",
+    "incomplete": "Incomplete",
+    "back": "Back",
+    "next": "Next",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "settings": "Settings"
+  },
+  "landing": {
+    "title": "Daily Conversations for Better Travel",
+    "subtitle": "AI recommends 3 essential travel phrases every day",
+    "cta": "Get Started",
+    "feature1": "Fresh travel phrases daily",
+    "feature2": "Speak & Quiz practice",
+    "feature3": "Track your progress"
+  },
+  "settings": {
+    "title": "Settings",
+    "learningLanguages": "Languages to learn",
+    "uiLanguage": "App language",
+    "difficulty": "Difficulty",
+    "darkMode": "Dark mode",
+    "difficultyLevels": {
+      "lowest": "Beginner (Grade 1-3)",
+      "low": "Elementary (Grade 4-6)",
+      "medium": "Intermediate (Middle school)",
+      "high": "Advanced (High school)"
+    },
+    "languages": {
+      "en": "English",
+      "ja": "Japanese",
+      "zh": "Chinese (Simplified)",
+      "de": "German"
+    },
+    "selectAtLeastOneLanguage": "Please select at least one language.",
+    "onboarding": {
+      "welcome": "Welcome!",
+      "setupMessage": "Please configure your settings before starting.",
+      "startLearning": "Start Learning"
+    }
+  },
+  "dashboard": {
+    "title": "Today's Recommended Phrases",
+    "noConversations": "Today's phrases are not ready yet.",
+    "situation": "Situation",
+    "original": "Original",
+    "translation": "Translation",
+    "pronunciation": "Pronunciation",
+    "keywords": "Keywords",
+    "progress": "{current}/{total} completed",
+    "allCompleted": "All completed!",
+    "practicePrompt": "Practice 5 times to complete"
+  },
+  "practice": {
+    "speaking": "Speak Along",
+    "quiz": "Fill in the Blank",
+    "speakingCount": "Speaking {count}/3",
+    "quizCount": "Quiz {count}/2",
+    "listenAndRepeat": "Listen and repeat",
+    "fillInBlank": "Fill in the blank with the correct word",
+    "correct": "Correct!",
+    "incorrect": "Try again",
+    "iReadIt": "I read it aloud",
+    "checkAnswer": "Check",
+    "playAudio": "Play",
+    "recording": "Recording...",
+    "startRecording": "Start Recording",
+    "yourSpeech": "Your speech",
+    "similarity": "Similarity"
+  },
+  "history": {
+    "title": "Previous Phrases",
+    "noHistory": "No learning history yet.",
+    "filterByDate": "Filter by date",
+    "filterByLanguage": "Filter by language",
+    "completed": "Completed",
+    "notCompleted": "Not completed",
+    "toggleStatus": "Toggle status",
+    "loading": "Loading...",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "pageInfo": "Page {current} of {total}"
+  },
+  "statistics": {
+    "title": "Learning Statistics",
+    "weeklyProgress": "Weekly Progress",
+    "monthlyProgress": "Monthly Progress",
+    "byLanguage": "By Language",
+    "streak": "Streak",
+    "totalDays": "Total Days",
+    "completionRate": "Completion Rate",
+    "days": "days",
+    "summary": "Summary",
+    "noData": "No statistics data yet.",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "today": "Today",
+    "history": "History",
+    "statistics": "Statistics",
+    "settings": "Settings"
+  }
+}
