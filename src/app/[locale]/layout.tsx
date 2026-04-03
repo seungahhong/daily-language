@@ -189,20 +189,20 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="min-h-screen pb-16">
+      <body className="min-h-screen pb-16 md:pb-0 md:pt-16">
         <JsonLd locale={locale} />
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <a
               href="#main-content"
-              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--foreground)] focus:px-4 focus:py-2 focus:text-[var(--background)] focus:shadow-lg"
             >
               Skip to main content
             </a>
-            <main id="main-content" className="mx-auto max-w-2xl px-4 py-6">
+            <Navigation />
+            <main id="main-content" className="mx-auto w-full max-w-5xl px-6 py-8 md:px-8 md:py-10">
               {children}
             </main>
-            <Navigation />
           </NextIntlClientProvider>
         </Providers>
       </body>

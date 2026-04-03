@@ -53,7 +53,6 @@ export default function SpeakingMode({
     }
   };
 
-  // Calculate similarity between transcript and original
   const similarity =
     transcript && original
       ? calculateSimilarity(transcript.toLowerCase(), original.toLowerCase())
@@ -61,17 +60,17 @@ export default function SpeakingMode({
 
   return (
     <section
-      className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--background)] p-4"
+      className="mt-5 rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
       aria-label={t('listenAndRepeat')}
     >
-      <p className="mb-3 text-sm text-[var(--muted)]">{t('listenAndRepeat')}</p>
+      <p className="mb-4 text-sm text-[var(--muted)]">{t('listenAndRepeat')}</p>
 
-      <div className="flex gap-2 mb-4" role="group" aria-label={t('listenAndRepeat')}>
+      <div className="flex gap-3 mb-5" role="group" aria-label={t('listenAndRepeat')}>
         {ttsSupported && (
           <button
             type="button"
             onClick={handlePlay}
-            className="rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="rounded-xl border border-[var(--border)] px-4 py-2.5 text-sm font-medium transition hover:bg-[var(--card-bg-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
             aria-label={t('playAudio')}
           >
             <span aria-hidden="true">🔊 </span>{t('playAudio')}
@@ -82,10 +81,10 @@ export default function SpeakingMode({
           <button
             type="button"
             onClick={handleRecord}
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+            className={`rounded-xl px-4 py-2.5 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)] ${
               isListening
                 ? 'bg-danger/10 text-danger animate-pulse'
-                : 'bg-primary/10 text-primary hover:bg-primary/20'
+                : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
             }`}
             aria-label={isListening ? t('recording') : t('startRecording')}
             aria-pressed={isListening}
@@ -97,11 +96,11 @@ export default function SpeakingMode({
 
       <div aria-live="polite" aria-atomic="true">
         {transcript && (
-          <div className="mb-4">
+          <div className="mb-5">
             <p className="text-sm">
               <span className="font-medium">{t('yourSpeech')}:</span> {transcript}
             </p>
-            <div className="mt-1 h-2 rounded-full bg-gray-200 dark:bg-gray-700">
+            <div className="mt-2 h-2 rounded-full bg-[var(--border)]">
               <div
                 className={`h-2 rounded-full transition-all ${
                   similarity > 70 ? 'bg-success' : similarity > 40 ? 'bg-warning' : 'bg-danger'
@@ -121,7 +120,7 @@ export default function SpeakingMode({
       <button
         type="button"
         onClick={handleComplete}
-        className="w-full rounded-lg border border-primary bg-primary/5 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="w-full rounded-xl bg-[var(--foreground)] px-4 py-2.5 text-sm font-medium text-[var(--background)] transition hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
       >
         {t('iReadIt')}
       </button>

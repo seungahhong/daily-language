@@ -95,11 +95,11 @@ export default async function DashboardPage() {
 
   return (
     <section aria-labelledby="dashboard-title">
-      <header className="mb-6">
-        <h1 id="dashboard-title" className="text-2xl font-bold">
+      <header className="mb-8">
+        <h1 id="dashboard-title" className="text-3xl font-bold tracking-tight">
           {t('title')}
         </h1>
-        <p className="mt-1 text-sm text-[var(--muted)]">
+        <p className="mt-2 text-sm text-[var(--muted)]">
           {completedCount === conversations.length && conversations.length > 0
             ? t('allCompleted')
             : t('progress', { current: completedCount, total: conversations.length })}
@@ -107,11 +107,11 @@ export default async function DashboardPage() {
       </header>
 
       {conversations.length === 0 ? (
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-8 text-center">
+        <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-12 text-center">
           <p className="text-[var(--muted)]">{t('noConversations')}</p>
         </div>
       ) : (
-        <ul className="space-y-4" role="list">
+        <ul className="space-y-5" role="list">
           {conversations.map((conversation) => (
             <li key={conversation.id}>
               <ConversationCard

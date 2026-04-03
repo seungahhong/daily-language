@@ -16,30 +16,44 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 border-t bg-[var(--background)] border-[var(--border)]"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-md md:bottom-auto md:top-0 md:border-b md:border-t-0"
       aria-label="Main navigation"
     >
-      <ul className="flex justify-around items-center h-16 max-w-lg mx-auto" role="list">
-        {links.map(({ href, label, icon }) => {
-          const isActive = pathname.startsWith(href);
-          return (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`flex flex-col items-center gap-1 px-3 py-2 text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg ${
-                  isActive ? 'text-primary font-semibold' : 'text-[var(--muted)] hover:text-[var(--foreground)]'
-                }`}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                <span className="text-xl" aria-hidden="true">
-                  {icon}
-                </span>
-                <span>{label}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="mx-auto w-full max-w-5xl px-6 md:px-8">
+        <ul className="flex items-center justify-around md:justify-start md:gap-1" role="list">
+          {/* Logo / Brand - desktop only */}
+          <li className="hidden md:flex md:mr-8">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 py-4 text-base font-semibold tracking-tight"
+            >
+              Daily Travel Talk
+            </Link>
+          </li>
+
+          {links.map(({ href, label, icon }) => {
+            const isActive = pathname.startsWith(href);
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`flex flex-col items-center gap-0.5 px-3 py-2.5 text-xs transition-colors md:flex-row md:gap-2 md:rounded-lg md:px-4 md:py-2 md:text-sm ${
+                    isActive
+                      ? 'text-[var(--foreground)] font-semibold md:bg-[var(--card-bg)]'
+                      : 'text-[var(--muted)] hover:text-[var(--foreground)]'
+                  }`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  <span className="text-lg md:text-base" aria-hidden="true">
+                    {icon}
+                  </span>
+                  <span>{label}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }

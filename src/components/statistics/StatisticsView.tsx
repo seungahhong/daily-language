@@ -36,28 +36,28 @@ export default function StatisticsView() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Summary Cards */}
       <section aria-label={t('summary') || 'Summary'}>
-        <dl className="grid grid-cols-3 gap-3">
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4 text-center">
-            <dd className="text-2xl font-bold text-primary">{data.streak}</dd>
-            <dt className="mt-1 text-xs text-[var(--muted)]">{t('streak')}</dt>
+        <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center">
+            <dd className="text-3xl font-bold tracking-tight">{data.streak}</dd>
+            <dt className="mt-2 text-sm text-[var(--muted)]">{t('streak')}</dt>
           </div>
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4 text-center">
-            <dd className="text-2xl font-bold text-primary">{data.totalDays}</dd>
-            <dt className="mt-1 text-xs text-[var(--muted)]">{t('totalDays')}</dt>
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center">
+            <dd className="text-3xl font-bold tracking-tight">{data.totalDays}</dd>
+            <dt className="mt-2 text-sm text-[var(--muted)]">{t('totalDays')}</dt>
           </div>
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4 text-center">
-            <dd className="text-2xl font-bold text-primary">{data.completionRate}%</dd>
-            <dt className="mt-1 text-xs text-[var(--muted)]">{t('completionRate')}</dt>
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-center">
+            <dd className="text-3xl font-bold tracking-tight">{data.completionRate}%</dd>
+            <dt className="mt-2 text-sm text-[var(--muted)]">{t('completionRate')}</dt>
           </div>
         </dl>
       </section>
 
       {/* Weekly Chart */}
-      <section className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4">
-        <h2 className="mb-4 text-lg font-semibold">{t('weeklyProgress')}</h2>
+      <section className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6">
+        <h2 className="mb-5 text-lg font-semibold tracking-tight">{t('weeklyProgress')}</h2>
         <figure>
           <WeeklyChart data={data.weekly} />
           <figcaption className="sr-only">{t('weeklyProgress')}</figcaption>
@@ -65,8 +65,8 @@ export default function StatisticsView() {
       </section>
 
       {/* Monthly Chart */}
-      <section className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4">
-        <h2 className="mb-4 text-lg font-semibold">{t('monthlyProgress')}</h2>
+      <section className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6">
+        <h2 className="mb-5 text-lg font-semibold tracking-tight">{t('monthlyProgress')}</h2>
         <figure>
           <MonthlyChart data={data.monthly} />
           <figcaption className="sr-only">{t('monthlyProgress')}</figcaption>
@@ -75,8 +75,8 @@ export default function StatisticsView() {
 
       {/* Language Chart */}
       {data.byLanguage.length > 0 && (
-        <section className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-4">
-          <h2 className="mb-4 text-lg font-semibold">{t('byLanguage')}</h2>
+        <section className="rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6">
+          <h2 className="mb-5 text-lg font-semibold tracking-tight">{t('byLanguage')}</h2>
           <figure>
             <LanguageChart data={data.byLanguage} />
             <figcaption className="sr-only">{t('byLanguage')}</figcaption>

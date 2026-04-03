@@ -69,20 +69,20 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
         e.preventDefault();
         handleSave();
       }}
-      className="space-y-8"
+      className="space-y-10"
     >
       <fieldset>
-        <legend className="mb-3 text-lg font-semibold">{t('learningLanguages')}</legend>
+        <legend className="mb-4 text-lg font-semibold tracking-tight">{t('learningLanguages')}</legend>
         <div className="flex flex-wrap gap-3">
           {LEARNING_LANGUAGES.map((lang) => (
             <button
               key={lang}
               type="button"
               onClick={() => toggleLanguage(lang)}
-              className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
+              className={`rounded-xl border px-5 py-2.5 text-sm font-medium transition ${
                 learningLanguages.includes(lang)
-                  ? 'border-primary bg-primary text-white'
-                  : 'border-[var(--border)] bg-[var(--card-bg)] hover:border-primary'
+                  ? 'border-[var(--foreground)] bg-[var(--foreground)] text-[var(--background)]'
+                  : 'border-[var(--border)] bg-[var(--card-bg)] hover:bg-[var(--card-bg-hover)]'
               }`}
               aria-pressed={learningLanguages.includes(lang)}
             >
@@ -93,15 +93,15 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-lg font-semibold">{t('difficulty')}</legend>
-        <div className="flex flex-col gap-2">
+        <legend className="mb-4 text-lg font-semibold tracking-tight">{t('difficulty')}</legend>
+        <div className="flex flex-col gap-3">
           {DIFFICULTIES.map((diff) => (
             <label
               key={diff}
-              className={`flex cursor-pointer items-center rounded-lg border px-4 py-3 transition ${
+              className={`flex cursor-pointer items-center rounded-xl border px-5 py-4 transition ${
                 difficulty === diff
-                  ? 'border-primary bg-primary/5'
-                  : 'border-[var(--border)] bg-[var(--card-bg)] hover:border-primary'
+                  ? 'border-[var(--foreground)] bg-[var(--foreground)]/5'
+                  : 'border-[var(--border)] bg-[var(--card-bg)] hover:bg-[var(--card-bg-hover)]'
               }`}
             >
               <input
@@ -119,7 +119,7 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-lg font-semibold">{t('darkMode')}</legend>
+        <legend className="mb-4 text-lg font-semibold tracking-tight">{t('darkMode')}</legend>
         <label className="flex cursor-pointer items-center gap-3">
           <input
             type="checkbox"
@@ -134,7 +134,7 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
       <button
         type="submit"
         disabled={saving || learningLanguages.length === 0}
-        className="w-full rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition hover:bg-primary-dark disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="w-full rounded-xl bg-[var(--foreground)] px-6 py-3.5 text-base font-semibold text-[var(--background)] transition hover:opacity-80 disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
         aria-disabled={saving || learningLanguages.length === 0}
         aria-busy={saving}
       >

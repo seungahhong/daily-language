@@ -14,7 +14,7 @@ export default async function HistoryPage() {
 
   return (
     <section aria-labelledby="history-title">
-      <h1 id="history-title" className="mb-6 text-2xl font-bold">
+      <h1 id="history-title" className="mb-8 text-3xl font-bold tracking-tight">
         {t('title')}
       </h1>
       <HistoryList />

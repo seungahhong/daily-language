@@ -67,7 +67,7 @@ export default function HistoryList() {
 
   return (
     <div>
-      <fieldset className="mb-4">
+      <fieldset className="mb-6">
         <label htmlFor="language-filter" className="sr-only">
           {t('filterByLanguage')}
         </label>
@@ -78,7 +78,7 @@ export default function HistoryList() {
             setLanguage(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg border border-[var(--border)] bg-[var(--card-bg)] px-3 py-2 text-sm"
+          className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-4 py-2.5 text-sm focus:border-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
         >
           <option value="">{t('filterByLanguage')}</option>
           {Object.entries(LANGUAGE_LABELS).map(([code, label]) => (
@@ -94,10 +94,10 @@ export default function HistoryList() {
           {t('loading')}
         </p>
       ) : conversations.length === 0 ? (
-        <p className="text-center text-[var(--muted)] py-8">{t('noHistory')}</p>
+        <p className="text-center text-[var(--muted)] py-12">{t('noHistory')}</p>
       ) : (
         <>
-          <ul className="space-y-3" role="list">
+          <ul className="space-y-4" role="list">
             {conversations.map((conv) => {
               const practice = conv.practices[0];
               const isCompleted = practice?.isCompleted || false;
@@ -107,34 +107,34 @@ export default function HistoryList() {
                   key={conv.id}
                 >
                   <article
-                    className={`rounded-xl border p-4 ${
+                    className={`rounded-2xl border p-5 transition ${
                       isCompleted
                         ? 'border-success/30 bg-success/5'
                         : 'border-[var(--border)] bg-[var(--card-bg)]'
                     }`}
                   >
-                    <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
-                        <header className="flex items-center gap-2 mb-1">
-                          <span className="rounded bg-primary/10 px-2 py-0.5 text-xs text-primary">
+                        <header className="flex items-center gap-2 mb-2">
+                          <span className="rounded-md bg-[var(--foreground)]/8 px-2 py-0.5 text-xs">
                             {LANGUAGE_LABELS[conv.language] || conv.language}
                           </span>
                           <time className="text-xs text-[var(--muted)]" dateTime={new Date(conv.date).toISOString()}>
                             {new Date(conv.date).toLocaleDateString()}
                           </time>
                         </header>
-                        <p className="font-medium text-sm">{conv.original}</p>
-                        <p className="text-xs text-[var(--muted)] mt-1">{conv.situation}</p>
+                        <p className="font-medium">{conv.original}</p>
+                        <p className="text-sm text-[var(--muted)] mt-1">{conv.situation}</p>
                       </div>
 
                       {practice && (
                         <button
                           type="button"
                           onClick={() => toggleCompletion(practice.id, isCompleted)}
-                          className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                          className={`shrink-0 rounded-xl px-4 py-2 text-xs font-medium transition ${
                             isCompleted
                               ? 'bg-success/10 text-success hover:bg-success/20'
-                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400'
+                              : 'border border-[var(--border)] text-[var(--muted)] hover:bg-[var(--card-bg-hover)]'
                           }`}
                           aria-label={t('toggleStatus')}
                         >
@@ -149,12 +149,12 @@ export default function HistoryList() {
           </ul>
 
           {totalPages > 1 && (
-            <nav className="mt-6 flex justify-center gap-2" aria-label="Pagination">
+            <nav className="mt-8 flex justify-center gap-3" aria-label="Pagination">
               <button
                 type="button"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="rounded-xl border border-[var(--border)] px-4 py-2 text-sm disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)] hover:bg-[var(--card-bg-hover)]"
                 aria-label={t('previousPage')}
               >
                 <span aria-hidden="true">←</span>
@@ -166,7 +166,7 @@ export default function HistoryList() {
                 type="button"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="rounded-xl border border-[var(--border)] px-4 py-2 text-sm disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)] hover:bg-[var(--card-bg-hover)]"
                 aria-label={t('nextPage')}
               >
                 <span aria-hidden="true">→</span>

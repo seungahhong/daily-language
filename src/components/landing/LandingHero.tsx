@@ -38,32 +38,23 @@ export default function LandingHero({ title, subtitle, cta, features }: LandingH
   }, []);
 
   return (
-    <header
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center"
-      style={{
-        backgroundImage: bgImage
-          ? `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${bgImage})`
-          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{title}</h1>
-      <p className="mb-8 max-w-md text-lg text-white/90">{subtitle}</p>
+    <header className="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
+      <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-7xl">{title}</h1>
+      <p className="mb-10 max-w-lg text-lg text-[var(--muted)]">{subtitle}</p>
 
       <button
         onClick={() => router.push('/dashboard')}
-        className="mb-12 rounded-full bg-white px-8 py-3 text-lg font-semibold text-gray-900 shadow-lg transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
+        className="mb-16 rounded-full bg-[var(--foreground)] px-10 py-4 text-base font-semibold text-[var(--background)] transition hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
         type="button"
       >
         {cta}
       </button>
 
-      <ul className="flex flex-col gap-4 md:flex-row md:gap-8">
+      <ul className="flex flex-col gap-4 md:flex-row md:gap-6">
         {features.map((feature, i) => (
           <li
             key={i}
-            className="rounded-xl bg-white/20 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm"
+            className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-6 py-3 text-sm font-medium"
           >
             {feature}
           </li>

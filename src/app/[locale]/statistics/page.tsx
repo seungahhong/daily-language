@@ -14,7 +14,7 @@ export default async function StatisticsPage() {
 
   return (
     <section aria-labelledby="statistics-title">
-      <h1 id="statistics-title" className="mb-6 text-2xl font-bold">
+      <h1 id="statistics-title" className="mb-8 text-3xl font-bold tracking-tight">
         {t('title')}
       </h1>
       <StatisticsView />

@@ -21,7 +21,7 @@ export default async function SettingsPage() {
 
   return (
     <section aria-labelledby="settings-title">
-      <h1 id="settings-title" className="mb-6 text-2xl font-bold">
+      <h1 id="settings-title" className="mb-8 text-3xl font-bold tracking-tight">
         {isOnboarding ? t('onboarding.welcome') : t('title')}
       </h1>
       {isOnboarding && (

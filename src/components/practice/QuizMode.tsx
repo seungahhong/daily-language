@@ -52,18 +52,18 @@ export default function QuizMode({ conversationId, original, keywords, onUpdate 
 
   return (
     <section
-      className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--background)] p-4"
+      className="mt-5 rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
       aria-label={t('fillInBlank')}
     >
-      <p className="mb-3 text-sm text-[var(--muted)]" id={`quiz-desc-${conversationId}`}>
+      <p className="mb-4 text-sm text-[var(--muted)]" id={`quiz-desc-${conversationId}`}>
         {t('fillInBlank')}
       </p>
 
-      <p className="mb-4 text-lg font-medium" aria-label={blankedText}>
+      <p className="mb-5 text-xl font-medium tracking-tight" aria-label={blankedText}>
         {blankedText}
       </p>
 
-      <div className="flex gap-2">
+      <div className="flex gap-3">
         <label className="sr-only" htmlFor={`quiz-${conversationId}`}>
           {t('fillInBlank')}
         </label>
@@ -78,7 +78,7 @@ export default function QuizMode({ conversationId, original, keywords, onUpdate 
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleCheck();
           }}
-          className="flex-1 rounded-lg border border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-2.5 text-sm focus:border-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
           placeholder={correctAnswer.charAt(0) + '...'}
           autoComplete="off"
           aria-describedby={`quiz-desc-${conversationId}`}
@@ -88,7 +88,7 @@ export default function QuizMode({ conversationId, original, keywords, onUpdate 
           type="button"
           onClick={handleCheck}
           disabled={!answer.trim()}
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          className="rounded-xl bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition hover:opacity-80 disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
         >
           {t('checkAnswer')}
         </button>
@@ -96,7 +96,7 @@ export default function QuizMode({ conversationId, original, keywords, onUpdate 
 
       {feedback && (
         <p
-          className={`mt-2 text-sm font-medium ${
+          className={`mt-3 text-sm font-medium ${
             feedback === 'correct' ? 'text-success' : 'text-danger'
           }`}
           role="alert"

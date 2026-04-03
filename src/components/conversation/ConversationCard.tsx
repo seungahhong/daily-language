@@ -33,15 +33,15 @@ export default function ConversationCard({
 
   return (
     <article
-      className={`rounded-xl border p-4 transition ${
+      className={`rounded-2xl border p-5 md:p-6 transition ${
         isCompleted
           ? 'border-success/30 bg-success/5'
           : 'border-[var(--border)] bg-[var(--card-bg)]'
       }`}
     >
-      <header className="mb-3">
+      <header className="mb-4">
         <div className="flex items-center justify-between">
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <span className="rounded-full bg-[var(--foreground)]/8 px-3 py-1 text-xs font-medium">
             {conversation.situation}
           </span>
           {isCompleted && (
@@ -53,18 +53,18 @@ export default function ConversationCard({
         </div>
       </header>
 
-      <div className="mb-4 space-y-2">
-        <p className="text-lg font-semibold">{conversation.original}</p>
+      <div className="mb-5 space-y-2">
+        <p className="text-xl font-semibold tracking-tight">{conversation.original}</p>
         <p className="text-sm text-[var(--muted)]">{translation}</p>
         {conversation.pronunciation && (
           <p className="text-xs text-[var(--muted)] italic">{conversation.pronunciation}</p>
         )}
         {conversation.keywords.length > 0 && (
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1.5 pt-1">
             {conversation.keywords.map((kw) => (
               <span
                 key={kw}
-                className="rounded bg-primary/5 px-2 py-0.5 text-xs text-primary"
+                className="rounded-md bg-[var(--foreground)]/5 px-2 py-0.5 text-xs text-[var(--muted)]"
               >
                 {kw}
               </span>
@@ -73,21 +73,21 @@ export default function ConversationCard({
         )}
       </div>
 
-      <div className="mb-3 flex gap-2 text-xs text-[var(--muted)]">
+      <div className="mb-4 flex gap-2 text-xs text-[var(--muted)]">
         <span>{tPractice('speakingCount', { count: speakingCount })}</span>
         <span>|</span>
         <span>{tPractice('quizCount', { count: quizCount })}</span>
       </div>
 
       {!isCompleted && (
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <button
             type="button"
             onClick={() => setActiveMode(activeMode === 'speaking' ? null : 'speaking')}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
+            className={`flex-1 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
               activeMode === 'speaking'
-                ? 'bg-primary text-white'
-                : 'border border-[var(--border)] hover:border-primary'
+                ? 'bg-[var(--foreground)] text-[var(--background)]'
+                : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
             }`}
             disabled={speakingCount >= 3}
             aria-expanded={activeMode === 'speaking'}
@@ -103,10 +103,10 @@ export default function ConversationCard({
           <button
             type="button"
             onClick={() => setActiveMode(activeMode === 'quiz' ? null : 'quiz')}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
+            className={`flex-1 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
               activeMode === 'quiz'
-                ? 'bg-primary text-white'
-                : 'border border-[var(--border)] hover:border-primary'
+                ? 'bg-[var(--foreground)] text-[var(--background)]'
+                : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
             }`}
             disabled={quizCount >= 2}
             aria-expanded={activeMode === 'quiz'}
