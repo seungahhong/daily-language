@@ -9,6 +9,7 @@
     "back": "Back",
     "next": "Next",
     "signIn": "Sign In",
+    "loginRequired": "Please sign in to continue",
     "signOut": "Sign Out",
     "settings": "Settings"
   },

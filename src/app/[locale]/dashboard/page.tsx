@@ -5,6 +5,8 @@ import { prisma } from '@/lib/db';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import ConversationCard from '@/components/conversation/ConversationCard';
+import { generateConversations } from '@/lib/groq';
+import LoginPrompt from '@/components/ui/LoginPrompt';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -20,7 +22,7 @@ export default async function DashboardPage() {
   const t = await getTranslations('dashboard');
 
   if (!session?.user?.id) {
-    redirect('/');
+    return <LoginPrompt />;
   }
 
   const settings = await prisma.userSettings.findUnique({
@@ -34,7 +36,7 @@ export default async function DashboardPage() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const conversations = await prisma.conversation.findMany({
+  let conversations = await prisma.conversation.findMany({
     where: {
       date: today,
       language: { in: settings.learningLanguages },
@@ -48,6 +50,44 @@ export default async function DashboardPage() {
     take: 3,
     orderBy: { createdAt: 'asc' },
   });
+
+  // 오늘 회화가 없으면 즉시 생성
+  if (conversations.length === 0) {
+    const language = settings.learningLanguages[0];
+    try {
+      const generated = await generateConversations(language, settings.difficulty, 3);
+
+      await prisma.conversation.createMany({
+        data: generated.map((conv) => ({
+          date: today,
+          language,
+          difficulty: settings.difficulty,
+          situation: conv.situation,
+          original: conv.original,
+          translation: conv.translation,
+          pronunciation: conv.pronunciation || null,
+          keywords: conv.keywords,
+        })),
+      });
+
+      conversations = await prisma.conversation.findMany({
+        where: {
+          date: today,
+          language: { in: settings.learningLanguages },
+          difficulty: settings.difficulty,
+        },
+        include: {
+          practices: {
+            where: { userId: session.user.id },
+          },
+        },
+        take: 3,
+        orderBy: { createdAt: 'asc' },
+      });
+    } catch {
+      // 생성 실패 시 빈 상태 유지
+    }
+  }
 
   const completedCount = conversations.filter(
     (c) => c.practices.length > 0 && c.practices[0].isCompleted,

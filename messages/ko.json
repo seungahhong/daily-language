@@ -9,6 +9,7 @@
     "back": "뒤로",
     "next": "다음",
     "signIn": "로그인",
+    "loginRequired": "로그인 해주세요",
     "signOut": "로그아웃",
     "settings": "설정"
   },

@@ -9,6 +9,7 @@
     "back": "戻る",
     "next": "次へ",
     "signIn": "ログイン",
+    "loginRequired": "ログインしてください",
     "signOut": "ログアウト",
     "settings": "設定"
   },
