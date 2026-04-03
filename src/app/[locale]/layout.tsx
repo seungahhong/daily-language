@@ -189,10 +189,8 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <JsonLd locale={locale} />
-      </head>
       <body className="min-h-screen pb-16">
+        <JsonLd locale={locale} />
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <a
