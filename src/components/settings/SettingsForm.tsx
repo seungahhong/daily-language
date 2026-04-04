@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
 import { useRouter } from '@/i18n/routing';
 
 interface SettingsFormProps {
@@ -21,14 +20,12 @@ const DIFFICULTIES = ['lowest', 'low', 'medium', 'high'] as const;
 export default function SettingsForm({ initialSettings, isOnboarding }: SettingsFormProps) {
   const t = useTranslations('settings');
   const tCommon = useTranslations('common');
-  const { setTheme } = useTheme();
   const router = useRouter();
 
   const [learningLanguages, setLearningLanguages] = useState<string[]>(
     initialSettings.learningLanguages,
   );
   const [difficulty, setDifficulty] = useState(initialSettings.difficulty);
-  const [darkMode, setDarkMode] = useState(initialSettings.darkMode);
   const [saving, setSaving] = useState(false);
 
   const toggleLanguage = (lang: string) => {
@@ -48,13 +45,11 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
         body: JSON.stringify({
           learningLanguages,
           difficulty,
-          darkMode,
           onboardingCompleted: true,
         }),
       });
 
       if (res.ok) {
-        setTheme(darkMode ? 'dark' : 'light');
         router.push('/dashboard');
         router.refresh();
       }
@@ -116,19 +111,6 @@ export default function SettingsForm({ initialSettings, isOnboarding }: Settings
             </label>
           ))}
         </div>
-      </fieldset>
-
-      <fieldset>
-        <legend className="mb-4 text-lg font-semibold tracking-tight">{t('darkMode')}</legend>
-        <label className="flex cursor-pointer items-center gap-3">
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={(e) => setDarkMode(e.target.checked)}
-            className="h-5 w-5 rounded"
-          />
-          <span className="text-sm">{t('darkMode')}</span>
-        </label>
       </fieldset>
 
       <button

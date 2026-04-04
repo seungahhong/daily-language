@@ -1,15 +1,15 @@
 import { getTranslations } from 'next-intl/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { redirect } from 'next/navigation';
 import StatisticsView from '@/components/statistics/StatisticsView';
+import LoginPrompt from '@/components/ui/LoginPrompt';
 
 export default async function StatisticsPage() {
   const session = await getServerSession(authOptions);
   const t = await getTranslations('statistics');
 
   if (!session?.user?.id) {
-    redirect('/');
+    return <LoginPrompt />;
   }
 
   return (

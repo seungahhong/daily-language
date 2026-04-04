@@ -21,11 +21,18 @@ export default function ConversationCard({
   const tPractice = useTranslations('practice');
   const [practice, setPractice] = useState(initialPractice);
   const [activeMode, setActiveMode] = useState<'speaking' | 'quiz' | null>(null);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const translation = (conversation.translation as Record<string, string>)?.[uiLanguage] || '';
+  const situationLabel = (conversation.situationTranslation as Record<string, string> | null)?.[uiLanguage] || conversation.situation;
+  const explanationWords = conversation.explanation as { word: string; meaning: Record<string, string> }[] | null;
+  const grammarNote = (conversation.grammarNote as Record<string, string> | null)?.[uiLanguage] || '';
   const isCompleted = practice?.isCompleted || false;
   const speakingCount = practice?.speakingCount || 0;
   const quizCount = practice?.quizCount || 0;
+
+  // 원문과 번역이 동일한 경우(같은 언어) 번역 숨김
+  const showTranslation = translation && translation.toLowerCase() !== conversation.original.toLowerCase();
 
   const handlePracticeUpdate = (updated: Practice) => {
     setPractice(updated);
@@ -42,7 +49,7 @@ export default function ConversationCard({
       <header className="mb-4">
         <div className="flex items-center justify-between">
           <span className="rounded-full bg-[var(--foreground)]/8 px-3 py-1 text-xs font-medium">
-            {conversation.situation}
+            {situationLabel}
           </span>
           {isCompleted && (
             <span className="rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success" role="status">
@@ -55,8 +62,10 @@ export default function ConversationCard({
 
       <div className="mb-5 space-y-2">
         <p className="text-xl font-semibold tracking-tight">{conversation.original}</p>
-        <p className="text-sm text-[var(--muted)]">{translation}</p>
-        {conversation.pronunciation && (
+        {showTranslation && (
+          <p className="text-sm text-[var(--muted)]">{translation}</p>
+        )}
+        {conversation.pronunciation && !['en', 'de'].includes(conversation.language) && (
           <p className="text-xs text-[var(--muted)] italic">{conversation.pronunciation}</p>
         )}
         {conversation.keywords.length > 0 && (
@@ -69,6 +78,39 @@ export default function ConversationCard({
                 {kw}
               </span>
             ))}
+          </div>
+        )}
+
+        {/* 설명 더보기 */}
+        {explanationWords && explanationWords.length > 0 && (
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => setShowExplanation(!showExplanation)}
+              className="flex items-center gap-1 text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition"
+              aria-expanded={showExplanation}
+            >
+              <span className={`inline-block transition-transform ${showExplanation ? 'rotate-90' : ''}`}>▶</span>
+              {t('explanation')}
+            </button>
+            {showExplanation && (
+              <div className="mt-3 rounded-xl bg-[var(--foreground)]/3 px-4 py-3 text-sm leading-relaxed">
+                <ul className="space-y-1.5">
+                  {explanationWords.map((item, i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="font-semibold text-[var(--foreground)] shrink-0">{item.word}</span>
+                      <span className="text-[var(--muted)]">—</span>
+                      <span className="text-[var(--foreground)]/80">{item.meaning?.[uiLanguage] || ''}</span>
+                    </li>
+                  ))}
+                </ul>
+                {grammarNote && (
+                  <p className="mt-3 pt-3 border-t border-[var(--border)] text-xs text-[var(--muted)]">
+                    {grammarNote}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

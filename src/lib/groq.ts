@@ -9,6 +9,13 @@ function getGroqClient() {
 
 const ConversationSchema = z.object({
   situation: z.string(),
+  situationTranslation: z.object({
+    ko: z.string(),
+    en: z.string(),
+    ja: z.string(),
+    zh: z.string(),
+    de: z.string(),
+  }),
   original: z.string(),
   translation: z.object({
     ko: z.string(),
@@ -19,6 +26,23 @@ const ConversationSchema = z.object({
   }),
   pronunciation: z.string().optional(),
   keywords: z.array(z.string()),
+  explanation: z.array(z.object({
+    word: z.string(),
+    meaning: z.object({
+      ko: z.string(),
+      en: z.string(),
+      ja: z.string(),
+      zh: z.string(),
+      de: z.string(),
+    }),
+  })).optional().default([]),
+  grammarNote: z.object({
+    ko: z.string(),
+    en: z.string(),
+    ja: z.string(),
+    zh: z.string(),
+    de: z.string(),
+  }).optional(),
 });
 
 const ConversationsResponseSchema = z.object({
@@ -69,6 +93,13 @@ Respond in JSON format:
   "conversations": [
     {
       "situation": "Brief situation description in English",
+      "situationTranslation": {
+        "ko": "상황 설명 (Korean)",
+        "en": "Situation description (English)",
+        "ja": "状況説明 (Japanese)",
+        "zh": "情景描述 (Chinese Simplified)",
+        "de": "Situationsbeschreibung (German)"
+      },
       "original": "The phrase in ${langName}",
       "translation": {
         "ko": "Korean translation",
@@ -78,10 +109,24 @@ Respond in JSON format:
         "de": "German translation"
       },
       "pronunciation": "Romanized pronunciation guide for the original phrase",
-      "keywords": ["key", "words", "from", "the", "phrase"]
+      "keywords": ["key", "words", "from", "the", "phrase"],
+      "explanation": [
+        {"word": "Where", "meaning": {"ko": "의문사: '어디'를 뜻합니다", "en": "interrogative: asking about location", "ja": "疑問詞: 場所を尋ねる", "zh": "疑问词: 询问地点", "de": "Fragewort: fragt nach dem Ort"}},
+        {"word": "is", "meaning": {"ko": "be동사: '~이다/있다' 현재형", "en": "verb 'to be': present tense", "ja": "be動詞: 現在形", "zh": "be动词: 现在时", "de": "Verb 'to be': Präsens"}},
+        {"word": "the", "meaning": {"ko": "정관사: 특정 대상을 가리킴", "en": "definite article: refers to specific item", "ja": "定冠詞: 特定のものを指す", "zh": "定冠词: 指特定事物", "de": "bestimmter Artikel"}},
+        {"word": "restroom", "meaning": {"ko": "명사: '화장실'", "en": "noun: bathroom/toilet", "ja": "名詞: お手洗い", "zh": "名词: 洗手间", "de": "Substantiv: Toilette"}}
+      ],
+      "grammarNote": {
+        "ko": "Where + is + the + 명사? → '~은 어디에 있나요?'라는 장소를 묻는 의문문",
+        "en": "Where + is + the + noun? → Basic question pattern for asking about locations",
+        "ja": "Where + is + the + 名詞? → 場所を尋ねる基本的な疑問文",
+        "zh": "Where + is + the + 名词? → 询问地点的基本疑问句",
+        "de": "Where + is + the + Substantiv? → Grundlegendes Fragemuster für Ortsangaben"
+      }
     }
   ]
-}`,
+}
+Every word in the phrase must have its own entry in the explanation array.`,
           },
           {
             role: 'user',
@@ -90,7 +135,7 @@ Respond in JSON format:
         ],
         model: 'llama-3.3-70b-versatile',
         temperature: 0.8,
-        max_tokens: 2048,
+        max_tokens: 4096,
         response_format: { type: 'json_object' },
       });
 

@@ -56,7 +56,11 @@
     "keywords": "핵심 단어",
     "progress": "{current}/{total} 완료",
     "allCompleted": "모두 완료했습니다!",
-    "practicePrompt": "5번 반복 연습을 해보세요"
+    "practicePrompt": "5번 반복 연습을 해보세요",
+    "loginNotice": "로그인을 할 경우에만 이전 회화, 통계 자료 내용이 저장됩니다.",
+    "loginRequiredForFeature": "이전 회화 및 통계 기능은 로그인 후 이용할 수 있습니다.",
+    "loading": "로딩 중...",
+    "explanation": "설명 보기"
   },
   "practice": {
     "speaking": "따라 말하기",
@@ -68,10 +72,14 @@
     "correct": "정답입니다!",
     "incorrect": "다시 시도해보세요",
     "iReadIt": "따라 읽었습니다",
+    "tryAgain": "다시 말하기",
+    "timeout": "시간이 초과되었습니다. 다시 시도해주세요.",
+    "remainingTime": "남은 시간",
+    "seconds": "초",
     "checkAnswer": "확인",
     "playAudio": "재생",
-    "recording": "녹음 중...",
-    "startRecording": "녹음 시작",
+    "recording": "듣는 중...",
+    "startRecording": "말하기",
     "yourSpeech": "당신의 발화",
     "similarity": "유사도"
   },

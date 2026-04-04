@@ -56,7 +56,11 @@
     "keywords": "关键词",
     "progress": "{current}/{total} 已完成",
     "allCompleted": "全部完成！",
-    "practicePrompt": "请重复练习5次"
+    "practicePrompt": "请重复练习5次",
+    "loginNotice": "只有登录后，历史短语和统计数据才会被保存。",
+    "loginRequiredForFeature": "历史记录和统计功能需要登录后使用。",
+    "loading": "加载中...",
+    "explanation": "查看解说"
   },
   "practice": {
     "speaking": "跟读",
@@ -68,10 +72,14 @@
     "correct": "正确！",
     "incorrect": "请再试一次",
     "iReadIt": "我已跟读",
+    "tryAgain": "再说一次",
+    "timeout": "时间到了，请再试一次。",
+    "remainingTime": "剩余时间",
+    "seconds": "秒",
     "checkAnswer": "确认",
     "playAudio": "播放",
-    "recording": "录音中...",
-    "startRecording": "开始录音",
+    "recording": "聆听中...",
+    "startRecording": "说话",
     "yourSpeech": "你的发言",
     "similarity": "相似度"
   },

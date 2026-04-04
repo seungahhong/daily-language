@@ -11,29 +11,43 @@ const LANGUAGE_MAP: Record<string, string> = {
 };
 
 interface SpeechRecognitionEvent {
-  results: {
-    [index: number]: {
-      [index: number]: {
-        transcript: string;
-      };
-    };
-    length: number;
-  };
+  results: SpeechRecognitionResultList;
+  resultIndex: number;
+}
+
+interface SpeechRecognitionResultList {
+  [index: number]: SpeechRecognitionResult;
+  length: number;
+}
+
+interface SpeechRecognitionResult {
+  [index: number]: SpeechRecognitionAlternative;
+  isFinal: boolean;
+  length: number;
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string;
+  confidence: number;
 }
 
 interface SpeechRecognitionInstance {
   lang: string;
   interimResults: boolean;
+  continuous: boolean;
   maxAlternatives: number;
   onresult: ((event: SpeechRecognitionEvent) => void) | null;
   onend: (() => void) | null;
+  onerror: ((event: { error: string }) => void) | null;
   start: () => void;
   stop: () => void;
+  abort: () => void;
 }
 
 export function useSpeechRecognition() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
+  const [interimTranscript, setInterimTranscript] = useState('');
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   const isSupported =
@@ -50,12 +64,33 @@ export function useSpeechRecognition() {
 
       const recognition = new (SpeechRecognition as new () => SpeechRecognitionInstance)();
       recognition.lang = LANGUAGE_MAP[language] || language;
-      recognition.interimResults = false;
+      recognition.interimResults = true;
+      recognition.continuous = true;
       recognition.maxAlternatives = 1;
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const result = event.results[0][0].transcript;
-        setTranscript(result);
+        let finalText = '';
+        let interimText = '';
+
+        for (let i = 0; i < event.results.length; i++) {
+          const result = event.results[i];
+          if (result.isFinal) {
+            finalText += result[0].transcript;
+          } else {
+            interimText += result[0].transcript;
+          }
+        }
+
+        if (finalText) {
+          setTranscript(finalText);
+          setInterimTranscript('');
+        } else {
+          setInterimTranscript(interimText);
+        }
+      };
+
+      recognition.onerror = () => {
+        setIsListening(false);
       };
 
       recognition.onend = () => {
@@ -66,6 +101,7 @@ export function useSpeechRecognition() {
       recognition.start();
       setIsListening(true);
       setTranscript('');
+      setInterimTranscript('');
     },
     [isSupported],
   );
@@ -77,5 +113,12 @@ export function useSpeechRecognition() {
     }
   }, []);
 
-  return { isListening, transcript, startListening, stopListening, isSupported };
+  return {
+    isListening,
+    transcript,
+    interimTranscript,
+    startListening,
+    stopListening,
+    isSupported,
+  };
 }

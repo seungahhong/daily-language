@@ -56,7 +56,11 @@
     "keywords": "Keywords",
     "progress": "{current}/{total} completed",
     "allCompleted": "All completed!",
-    "practicePrompt": "Practice 5 times to complete"
+    "practicePrompt": "Practice 5 times to complete",
+    "loginNotice": "History and statistics are only saved when you are logged in.",
+    "loginRequiredForFeature": "History and statistics features require login.",
+    "loading": "Loading...",
+    "explanation": "Show explanation"
   },
   "practice": {
     "speaking": "Speak Along",
@@ -68,10 +72,14 @@
     "correct": "Correct!",
     "incorrect": "Try again",
     "iReadIt": "I read it aloud",
+    "tryAgain": "Try again",
+    "timeout": "Time's up. Please try again.",
+    "remainingTime": "Time left",
+    "seconds": "s",
     "checkAnswer": "Check",
     "playAudio": "Play",
-    "recording": "Recording...",
-    "startRecording": "Start Recording",
+    "recording": "Listening...",
+    "startRecording": "Speak",
     "yourSpeech": "Your speech",
     "similarity": "Similarity"
   },

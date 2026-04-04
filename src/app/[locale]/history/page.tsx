@@ -1,15 +1,15 @@
 import { getTranslations } from 'next-intl/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { redirect } from 'next/navigation';
 import HistoryList from '@/components/history/HistoryList';
+import LoginPrompt from '@/components/ui/LoginPrompt';
 
 export default async function HistoryPage() {
   const session = await getServerSession(authOptions);
   const t = await getTranslations('history');
 
   if (!session?.user?.id) {
-    redirect('/');
+    return <LoginPrompt />;
   }
 
   return (

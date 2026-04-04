@@ -73,9 +73,12 @@ model Conversation {
   date          DateTime   @db.Date
   language      String
   difficulty    String
-  situation     String
-  original      String
-  translation   Json
+  situation              String
+  situationTranslation   Json?
+  original               String
+  translation            Json
+  explanation            Json?
+  grammarNote            Json?
   pronunciation String?
   keywords      String[]
   practices     Practice[]

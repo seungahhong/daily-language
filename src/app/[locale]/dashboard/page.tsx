@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import ConversationCard from '@/components/conversation/ConversationCard';
 import { generateConversations } from '@/lib/groq';
-import LoginPrompt from '@/components/ui/LoginPrompt';
+import GuestDashboard from '@/components/dashboard/GuestDashboard';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   const t = await getTranslations('dashboard');
 
   if (!session?.user?.id) {
-    return <LoginPrompt />;
+    return <GuestDashboard />;
   }
 
   const settings = await prisma.userSettings.findUnique({
@@ -63,8 +63,11 @@ export default async function DashboardPage() {
           language,
           difficulty: settings.difficulty,
           situation: conv.situation,
+          situationTranslation: conv.situationTranslation,
           original: conv.original,
           translation: conv.translation,
+          explanation: JSON.parse(JSON.stringify(conv.explanation)),
+          grammarNote: conv.grammarNote,
           pronunciation: conv.pronunciation || null,
           keywords: conv.keywords,
         })),

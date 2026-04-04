@@ -56,7 +56,11 @@
     "keywords": "キーワード",
     "progress": "{current}/{total} 完了",
     "allCompleted": "すべて完了しました！",
-    "practicePrompt": "5回繰り返して練習しましょう"
+    "practicePrompt": "5回繰り返して練習しましょう",
+    "loginNotice": "ログインした場合のみ、過去のフレーズや統計データが保存されます。",
+    "loginRequiredForFeature": "履歴と統計機能はログイン後にご利用いただけます。",
+    "loading": "読み込み中...",
+    "explanation": "解説を見る"
   },
   "practice": {
     "speaking": "リピート",
@@ -68,10 +72,14 @@
     "correct": "正解です！",
     "incorrect": "もう一度やってみましょう",
     "iReadIt": "声に出して読みました",
+    "tryAgain": "もう一度話す",
+    "timeout": "時間切れです。もう一度お試しください。",
+    "remainingTime": "残り時間",
+    "seconds": "秒",
     "checkAnswer": "確認",
     "playAudio": "再生",
-    "recording": "録音中...",
-    "startRecording": "録音開始",
+    "recording": "聞いています...",
+    "startRecording": "話す",
     "yourSpeech": "あなたの発話",
     "similarity": "類似度"
   },

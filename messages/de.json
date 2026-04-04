@@ -56,7 +56,11 @@
     "keywords": "Schlüsselwörter",
     "progress": "{current}/{total} abgeschlossen",
     "allCompleted": "Alles geschafft!",
-    "practicePrompt": "Üben Sie 5 Mal zum Abschließen"
+    "practicePrompt": "Üben Sie 5 Mal zum Abschließen",
+    "loginNotice": "Verlauf und Statistiken werden nur gespeichert, wenn Sie angemeldet sind.",
+    "loginRequiredForFeature": "Verlauf und Statistikfunktionen erfordern eine Anmeldung.",
+    "loading": "Laden...",
+    "explanation": "Erklärung anzeigen"
   },
   "practice": {
     "speaking": "Nachsprechen",
@@ -68,10 +72,14 @@
     "correct": "Richtig!",
     "incorrect": "Versuchen Sie es erneut",
     "iReadIt": "Ich habe es laut gelesen",
+    "tryAgain": "Nochmal sprechen",
+    "timeout": "Zeit abgelaufen. Bitte versuchen Sie es erneut.",
+    "remainingTime": "Verbleibende Zeit",
+    "seconds": "s",
     "checkAnswer": "Prüfen",
     "playAudio": "Abspielen",
-    "recording": "Aufnahme...",
-    "startRecording": "Aufnahme starten",
+    "recording": "Hört zu...",
+    "startRecording": "Sprechen",
     "yourSpeech": "Ihre Sprache",
     "similarity": "Ähnlichkeit"
   },

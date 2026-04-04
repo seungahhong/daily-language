@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import type { ConversationWithPractice } from '@/types';
 
 const LANGUAGE_LABELS: Record<string, string> = {
@@ -13,6 +13,7 @@ const LANGUAGE_LABELS: Record<string, string> = {
 
 export default function HistoryList() {
   const t = useTranslations('history');
+  const locale = useLocale();
   const [conversations, setConversations] = useState<ConversationWithPractice[]>([]);
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState('');
@@ -124,7 +125,7 @@ export default function HistoryList() {
                           </time>
                         </header>
                         <p className="font-medium">{conv.original}</p>
-                        <p className="text-sm text-[var(--muted)] mt-1">{conv.situation}</p>
+                        <p className="text-sm text-[var(--muted)] mt-1">{(conv.situationTranslation as Record<string, string> | null)?.[locale] || conv.situation}</p>
                       </div>
 
                       {practice && (
