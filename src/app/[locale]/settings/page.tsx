@@ -5,12 +5,17 @@ import { prisma } from '@/lib/db';
 import SettingsForm from '@/components/settings/SettingsForm';
 import { redirect } from 'next/navigation';
 
-export default async function SettingsPage() {
+export default async function SettingsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const session = await getServerSession(authOptions);
   const t = await getTranslations('settings');
 
   if (!session?.user?.id) {
-    redirect('/');
+    redirect(`/${locale}`);
   }
 
   const settings = await prisma.userSettings.findUnique({

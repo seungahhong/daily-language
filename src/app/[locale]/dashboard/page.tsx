@@ -17,7 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const session = await getServerSession(authOptions);
   const t = await getTranslations('dashboard');
 
@@ -30,7 +35,7 @@ export default async function DashboardPage() {
   });
 
   if (!settings?.onboardingCompleted) {
-    redirect('/settings');
+    redirect(`/${locale}/settings`);
   }
 
   const today = new Date();
