@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from '@/i18n/routing';
 import { useEffect, useState } from 'react';
 
@@ -43,7 +43,7 @@ export default function LandingHero({ title, subtitle, cta, features }: LandingH
       <p className="mb-10 max-w-lg text-lg text-[var(--muted)]">{subtitle}</p>
 
       <button
-        onClick={() => router.push('/dashboard')}
+        onClick={() => session ? router.push('/dashboard') : signIn(undefined, { callbackUrl: '/dashboard' })}
         className="mb-16 rounded-full bg-[var(--foreground)] px-10 py-4 text-base font-semibold text-[var(--background)] transition hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
         type="button"
       >
