@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { isSttSupported } from '@/lib/stt-support';
 
 const LANGUAGE_MAP: Record<string, string> = {
   en: 'en-US',
@@ -50,9 +51,7 @@ export function useSpeechRecognition() {
   const [interimTranscript, setInterimTranscript] = useState('');
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
-  const isSupported =
-    typeof window !== 'undefined' &&
-    ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
+  const isSupported = isSttSupported();
 
   const startListening = useCallback(
     (language: string) => {

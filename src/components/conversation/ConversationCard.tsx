@@ -1,53 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Conversation, Practice } from '@prisma/client';
 import SpeakingMode from '@/components/practice/SpeakingMode';
 import QuizMode from '@/components/practice/QuizMode';
+import { isSttSupported } from '@/lib/stt-support';
 
-/**
- * iOS Chrome에서는 webkitSpeechRecognition이 window에 존재하지만
- * 실제 start() 호출 시 에러가 발생함. 실제 동작 여부를 테스트해서 판별.
- */
+const emptySubscribe = () => () => {};
+
 function useSttSupported() {
-  const [supported, setSupported] = useState(false);
-
-  useEffect(() => {
-    const SpeechRecognition =
-      (window as unknown as Record<string, unknown>).SpeechRecognition ||
-      (window as unknown as Record<string, unknown>).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      setSupported(false);
-      return;
-    }
-
-    try {
-      const recognition = new (SpeechRecognition as new () => { start: () => void; stop: () => void; abort: () => void; onerror: ((e: { error: string }) => void) | null; onend: (() => void) | null })();
-      recognition.onerror = (e) => {
-        // 'not-allowed' = 권한 거부 (사용자가 허용 가능), 'aborted' = 우리가 중단함
-        // 이 외의 에러('service-not-available' 등)는 미지원으로 간주
-        if (e.error === 'not-allowed' || e.error === 'aborted') {
-          setSupported(true);
-        } else {
-          setSupported(false);
-        }
-      };
-      recognition.onend = () => {};
-      recognition.start();
-      // 즉시 중단 — 테스트 목적
-      setTimeout(() => {
-        try { recognition.abort(); } catch {}
-      }, 100);
-      // start()가 throw 없이 실행되면 일단 지원으로 간주
-      setSupported(true);
-    } catch {
-      setSupported(false);
-    }
-  }, []);
-
-  return supported;
+  return useSyncExternalStore(emptySubscribe, isSttSupported, () => false);
 }
 
 interface ConversationCardProps {
