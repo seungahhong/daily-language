@@ -87,10 +87,10 @@ export default function ConversationCard({
             <button
               type="button"
               onClick={() => setShowExplanation(!showExplanation)}
-              className="flex items-center gap-1 text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition"
+              className="flex items-center gap-1 py-2 text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition cursor-pointer"
               aria-expanded={showExplanation}
             >
-              <span className={`inline-block transition-transform ${showExplanation ? 'rotate-90' : ''}`}>▶</span>
+              <span className={`inline-block transition-transform duration-200 ${showExplanation ? 'rotate-90' : ''}`}>▶</span>
               {t('explanation')}
             </button>
             {showExplanation && (
@@ -126,7 +126,7 @@ export default function ConversationCard({
           <button
             type="button"
             onClick={() => setActiveMode(activeMode === 'speaking' ? null : 'speaking')}
-            className={`flex-1 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
+            className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition cursor-pointer ${
               activeMode === 'speaking'
                 ? 'bg-[var(--foreground)] text-[var(--background)]'
                 : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
@@ -145,7 +145,7 @@ export default function ConversationCard({
           <button
             type="button"
             onClick={() => setActiveMode(activeMode === 'quiz' ? null : 'quiz')}
-            className={`flex-1 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
+            className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition cursor-pointer ${
               activeMode === 'quiz'
                 ? 'bg-[var(--foreground)] text-[var(--background)]'
                 : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'

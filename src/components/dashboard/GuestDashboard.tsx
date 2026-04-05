@@ -52,10 +52,10 @@ function GuestConversationCard({
             <button
               type="button"
               onClick={() => setShowExplanation(!showExplanation)}
-              className="flex items-center gap-1 text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition"
+              className="flex items-center gap-1 py-2 text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition cursor-pointer"
               aria-expanded={showExplanation}
             >
-              <span className={`inline-block transition-transform ${showExplanation ? 'rotate-90' : ''}`}>▶</span>
+              <span className={`inline-block transition-transform duration-200 ${showExplanation ? 'rotate-90' : ''}`}>▶</span>
               {t('explanation')}
             </button>
             {showExplanation && (
