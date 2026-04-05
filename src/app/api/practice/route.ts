@@ -37,8 +37,10 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  // Auto-complete when speaking >= 3 and quiz >= 2
-  if (practice.speakingCount >= 3 && practice.quizCount >= 2 && !practice.isCompleted) {
+  // Auto-complete: (speaking >= 3 AND quiz >= 2) OR (quiz-only mode: quiz >= 5)
+  const completedNormal = practice.speakingCount >= 3 && practice.quizCount >= 2;
+  const completedQuizOnly = practice.quizCount >= 5;
+  if ((completedNormal || completedQuizOnly) && !practice.isCompleted) {
     const updated = await prisma.practice.update({
       where: { id: practice.id },
       data: { isCompleted: true, completedAt: new Date() },

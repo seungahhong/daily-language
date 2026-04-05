@@ -1,10 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Conversation, Practice } from '@prisma/client';
 import SpeakingMode from '@/components/practice/SpeakingMode';
 import QuizMode from '@/components/practice/QuizMode';
+
+const emptySubscribe = () => () => {};
+
+function useSttSupported() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window,
+    () => false,
+  );
+}
 
 interface ConversationCardProps {
   conversation: Conversation;
@@ -22,6 +32,7 @@ export default function ConversationCard({
   const [practice, setPractice] = useState(initialPractice);
   const [activeMode, setActiveMode] = useState<'speaking' | 'quiz' | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
+  const sttSupported = useSttSupported();
 
   const translation = (conversation.translation as Record<string, string>)?.[uiLanguage] || '';
   const situationLabel = (conversation.situationTranslation as Record<string, string> | null)?.[uiLanguage] || conversation.situation;
@@ -30,6 +41,7 @@ export default function ConversationCard({
   const isCompleted = practice?.isCompleted || false;
   const speakingCount = practice?.speakingCount || 0;
   const quizCount = practice?.quizCount || 0;
+  const quizGoal = sttSupported ? 2 : 5;
 
   // 원문과 번역이 동일한 경우(같은 언어) 번역 숨김
   const showTranslation = translation && translation.toLowerCase() !== conversation.original.toLowerCase();
@@ -116,32 +128,38 @@ export default function ConversationCard({
       </div>
 
       <div className="mb-4 flex gap-2 text-xs text-[var(--muted)]">
-        <span>{tPractice('speakingCount', { count: speakingCount })}</span>
-        <span>|</span>
+        {sttSupported && (
+          <>
+            <span>{tPractice('speakingCount', { count: speakingCount })}</span>
+            <span>|</span>
+          </>
+        )}
         <span>{tPractice('quizCount', { count: quizCount })}</span>
       </div>
 
       {!isCompleted && (
         <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => setActiveMode(activeMode === 'speaking' ? null : 'speaking')}
-            className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition cursor-pointer ${
-              activeMode === 'speaking'
-                ? 'bg-[var(--foreground)] text-[var(--background)]'
-                : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
-            }`}
-            disabled={speakingCount >= 3}
-            aria-expanded={activeMode === 'speaking'}
-            aria-label={
-              speakingCount >= 3
-                ? `${tPractice('speaking')} - ${t('situation')} ✓`
-                : tPractice('speaking')
-            }
-          >
-            {tPractice('speaking')}{' '}
-            {speakingCount >= 3 && <span aria-hidden="true">✓</span>}
-          </button>
+          {sttSupported && (
+            <button
+              type="button"
+              onClick={() => setActiveMode(activeMode === 'speaking' ? null : 'speaking')}
+              className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition cursor-pointer ${
+                activeMode === 'speaking'
+                  ? 'bg-[var(--foreground)] text-[var(--background)]'
+                  : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
+              }`}
+              disabled={speakingCount >= 3}
+              aria-expanded={activeMode === 'speaking'}
+              aria-label={
+                speakingCount >= 3
+                  ? `${tPractice('speaking')} - ${t('situation')} ✓`
+                  : tPractice('speaking')
+              }
+            >
+              {tPractice('speaking')}{' '}
+              {speakingCount >= 3 && <span aria-hidden="true">✓</span>}
+            </button>
+          )}
           <button
             type="button"
             onClick={() => setActiveMode(activeMode === 'quiz' ? null : 'quiz')}
@@ -150,21 +168,21 @@ export default function ConversationCard({
                 ? 'bg-[var(--foreground)] text-[var(--background)]'
                 : 'border border-[var(--border)] hover:bg-[var(--card-bg-hover)]'
             }`}
-            disabled={quizCount >= 2}
+            disabled={quizCount >= quizGoal}
             aria-expanded={activeMode === 'quiz'}
             aria-label={
-              quizCount >= 2
+              quizCount >= quizGoal
                 ? `${tPractice('quiz')} - ${t('situation')} ✓`
                 : tPractice('quiz')
             }
           >
             {tPractice('quiz')}{' '}
-            {quizCount >= 2 && <span aria-hidden="true">✓</span>}
+            {quizCount >= quizGoal && <span aria-hidden="true">✓</span>}
           </button>
         </div>
       )}
 
-      {activeMode === 'speaking' && (
+      {sttSupported && activeMode === 'speaking' && (
         <SpeakingMode
           conversationId={conversation.id}
           original={conversation.original}
